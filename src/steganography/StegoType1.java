@@ -6,32 +6,34 @@
 package steganography;
 
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
 
 /**
- *
+ *Steganography Type I.
  * @author aniruddha
  */
-public class StegoType1 {
-    public boolean loadImage(Path filePath){
-        try {
-            
-            base=ImageIO.read(Files.newInputStream(filePath));
-            return true;
-        } catch (IOException ex) {
-            Logger.getLogger(StegoType1.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
-        }
+public class StegoType1 implements Stego{
+    @Override
+    public void setImage(BufferedImage image) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    public boolean construct(int shift,String message){
-        
-        return true;
+
+    @Override
+    public BufferedImage getImage() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    private BufferedImage base,constructed;
+
+    @Override
+    public void setMessage(String message) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String getMessage() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean process(int type) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

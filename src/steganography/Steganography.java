@@ -8,7 +8,7 @@ package steganography;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * The test class. No such significance.
  * @author aniruddha
  */
 public class Steganography {
@@ -20,9 +20,9 @@ public class Steganography {
         // TODO code application logic here
         String s=JOptionPane.showInputDialog("Enter a String:");
         System.out.println(s);
-        String k=Utils.generateInteger(s, 8);
+        String k=Utils.base2encode(s, 8);
         System.out.println(k);
-        String d=Utils.generateString(k, 8);
+        String d=Utils.base2decode(k, 8);
         System.out.println(d);
         if(s.equals(d))System.out.println("Success");
         else System.out.println(s.compareTo(d)+" Failure");
