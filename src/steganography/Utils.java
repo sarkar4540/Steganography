@@ -48,7 +48,7 @@ public class Utils {
     }
     
     /**
-     * Effectively converts the passed Base 2 string, that is consisting of just 1 and 0 to string, in form of characters(ASCII or Unicode),.
+     * Effectively converts the passed Base 2 string, that is consisting of just 1 and 0 to string, in form of characters(ASCII or Unicode), until a null character is interpreted.
      * @param str The string to be decoded.
      * @param charSize The maximum size of each character that makes up the string in bits.
      * @return The decoded string from base 2.
@@ -62,6 +62,7 @@ public class Utils {
                 character=character<<1;
                 character+=str.charAt(count++)-'0';
             }
+            if(character==0)break;
             ret.append((char)character);
         }
         return ret.toString();
@@ -81,6 +82,20 @@ public class Utils {
         }
     }
     
+    /**
+     * Writes an image to path.
+     * @param image The data of the image.
+     * @param filePath the path to the file.
+     * @return true if success else you know what!
+     */
+    public static boolean saveImageToPath(BufferedImage image,Path filePath){
+        try {
+            return ImageIO.write(image, "png", Files.newOutputStream(filePath));
+        } catch (IOException ex) {
+            Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+    }
     /**
      * An implementation of Apache commons leftpad.
      * @param s String to be padded.

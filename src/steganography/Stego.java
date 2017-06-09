@@ -52,6 +52,7 @@ public interface Stego {
     /**
      * This method manipulates with the image set.
      * @param type The function may encode the image with the message, or may decode the mesage from the image depending on this argument.
+     * The values can be either STEGANOGRAPH or STEGANALYZE as defined by the interface or any other value if described by the class.
      * @return Returns true if it has successfully completed the job it has to do, else you know what!
      */
     public boolean process(int type);
