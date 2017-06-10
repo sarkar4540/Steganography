@@ -16,10 +16,10 @@
  */
 package steganography;
 
-import java.awt.Color;
 import java.awt.image.BufferedImage;
 
 /**
+ * Saves data throughout the image's LSB. The data string ends with 0x0. Considers only ASCII table!
  * Steganography Type I.
  * @author aniruddha
  */
@@ -74,11 +74,41 @@ public class StegoType1 implements Stego{
         }
         return true;
     }
+    private boolean steganalyse(){
+        int width=base.getWidth(),height=base.getHeight(),count=0;
+        StringBuilder sb=new StringBuilder(width*height);//Maximum value possible is taken
+        impl=new BufferedImage(width,height,base.getType());
+        for(int i=0;i<width;i++){
+            for(int j=0;j<height;j++){
+                int color=base.getRGB(i, j);
+                int databit=0;
+                int red=color>>16&0xFF;
+                databit+=red%2;//Getting red LSB
+                
+                int green=color>>8&0xFF;
+                databit+=green%2;//Getting green LSB
+                
+                int blue=color&0xFF;
+                databit+=blue%2;//Getting blue LSB
+                
+                databit=(databit/2)&0x1;//If databit >1 then databit is 1 else 0
+                
+                sb.append(databit);
+            }
+        }
+        message=Utils.base2decode(sb.toString(), 8);
+        return true;
+    }
     @Override
     public boolean process(int type) {
-        if(type==STEGANOGRAPH)return stegbuild();
-        else throw new UnsupportedOperationException("Not supported yet.");
-        
+        switch (type) {
+            case STEGANOGRAPH:
+                return stegbuild();
         //To change body of generated methods, choose Tools | Templates.
+            case STEGANALYZE:
+                return steganalyse();
+            default:
+                throw new UnsupportedOperationException("Not supported yet.");
+        }
     }
 }
