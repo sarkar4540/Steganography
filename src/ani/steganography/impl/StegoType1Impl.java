@@ -14,13 +14,13 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package steganography.impl;
+package ani.steganography.impl;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import steganography.Stego;
-import steganography.StegoType1;
-import steganography.Utils;
+import ani.steganography.Stego;
+import ani.steganography.StegoType1;
+import ani.steganography.Utils;
 
 /**
  *
